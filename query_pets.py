@@ -6,19 +6,24 @@ con = None
 try:
     con = lite.connect('pets.db')
 
-
     with con:
         while True:
             person_id = input('Please enter the ID number of requested Person or -1 to exit:')
             if person_id == '-1':
                 sys.exit()
-            elif person_id != '-1':
-                con.row_factory = lite.Row
-                cur = con.cursor()
-                cur.execute('SELECT * FROM person where id =?', (person_id))
-                row = cur.fetchall()
+            else:
+                try:
+                    person_id = int(person_id)
+                except:
+                    print('Invalid input. Please enter valid ID."')
+                    continue
 
-                print(f"{row['first_name']} {row['last_name']} is {row['age']} year old.")
+            con.row_factory = lite.Row
+            cur = con.cursor()
+            cur.execute('SELECT * FROM person WHERE person.id =?',(person_id,))
+            person_data = cur.fetchall()
+
+            print(f"{person_data['first_name']} {person_data['last_name']} is {person_data['age']} year old.")
 
             # data = cur.fetchall()
 
