@@ -39,8 +39,8 @@ if __name__ == "__main__":
             cur.executemany('INSERT INTO person VALUES(?, ?, ?, ?)', people_data)
             cur.execute('DROP TABLE IF EXISTS pet')
             cur.execute('CREATE TABLE pet(id INTEGER PRIMARY KEY, name TEXT, breed TEXT, age INTEGER, dead INTEGER)')
-            cur.execute('DROP TABLE IF EXISTS person_pet')
             cur.executemany('INSERT INTO pet VALUES(?, ?, ?, ?, ?)', pet_data)
+            cur.execute('DROP TABLE IF EXISTS person_pet')
             cur.execute('CREATE TABLE person_pet(person_id INTEGER, pet_id)')
             cur.executemany('INSERT INTO person_pet VALUES(?, ?)', person_pet_data)
 

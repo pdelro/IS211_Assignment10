@@ -23,7 +23,7 @@ try:
             cur.execute('SELECT * FROM person WHERE person.id =?',(person_id,))
             person_data = cur.fetchall()
 
-            print(f"{person_data['first_name']} {person_data['last_name']} is {person_data['age']} year old.")
+            print(f"{person_data[0]} {person_data[1]} is {person_data[2]} year old.")
 
             # data = cur.fetchall()
 
